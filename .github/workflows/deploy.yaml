@@ -16,12 +16,20 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
       - name: Set up terraform
         uses: hashicorp/setup-terraform@v2
+
       - name: Terraform Init
         id: init
         run: terraform init
         working-directory: ./VPC
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: ./VPC
+
       - name: Terraform Apply
         id: apply
         run: terraform apply --auto-approve
